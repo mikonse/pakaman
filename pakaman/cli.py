@@ -15,6 +15,7 @@ def create_parser() -> ArgumentParser:
     parser.add_argument("-c", "--config", type=str, default="pakaman.yaml", help="Path to pakman config file")
     parser.add_argument("-o", "--output", type=str, default="pakaman-build", help="Output directory")
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
+    parser.add_argument("--no-cleanup", action="store_true", help="Do not clean up build files")
 
     return parser
 
@@ -37,7 +38,7 @@ def cli():
 
     output_dir = Path(args.output).absolute()
 
-    builder = PackageBuilder(package, output_dir)
+    builder = PackageBuilder(package, output_dir, clean_up=not args.no_cleanup)
     builder.build()
 
 

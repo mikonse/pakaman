@@ -9,9 +9,10 @@ logger = logging.getLogger(__name__)
 
 
 class PackageBuilder:
-    def __init__(self, package: Package, output_dir: Path):
+    def __init__(self, package: Package, output_dir: Path, clean_up: bool):
         self.package = package
         self.output_dir = output_dir
+        self.clean_up = clean_up
 
         lang_builder_cls = get_lang(self.package.language)
         if lang_builder_cls is None:
@@ -27,7 +28,8 @@ class PackageBuilder:
         target_builder = get_target(target.name)
         if target_builder is None:
             raise KeyError(f"unknown build target {target.name}")
-        builder: TargetBuilder = target_builder(self.package, target, out_dir)
+        builder: TargetBuilder = target_builder(self.package, target, out_dir, self.clean_up)
+        logger.info(f"Building target {target.name}")
         builder.build()
 
     def build(self):

@@ -29,7 +29,7 @@ class Debian(TargetBuilder):
         subprocess.run(["debuild", "-us", "-uc", "-rfakeroot"])
         os.chdir(cur_dir_save)
 
-        if self.remove_build_files:
+        if self.clean_up:
             shutil.rmtree(dir_path)
             dir_path.mkdir()
 

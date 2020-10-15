@@ -6,6 +6,8 @@
 ## Running
 
 ## Roadmap
-[ ] build basic debian packages
-[ ] build basic arch packages
-[ ] allow changelog to be read from a separate markdown file
+ [x] build basic debian packages
+ [x] build basic arch packages
+ [ ] more options
+ [ ] add options to build packages in containers
+ [ ] allow changelog to be read from a separate markdown file

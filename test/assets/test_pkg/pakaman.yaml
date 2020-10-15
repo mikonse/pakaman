@@ -4,12 +4,12 @@ language: python
 maintainer:
   name: Some Maintainer
   email: email@email.com
-description: some package
 distributions:
   - name: debian
     dist_version: buster
     architecture: all
 #  - name: arch
+#    architecture: x86_64
 changelog:
   - version: 1.0.0
     urgency: medium

@@ -48,4 +48,8 @@ class Debian(Target):
 
 class Arch(Target):
     name = "arch"
-    schema = schema.Schema({}, ignore_extra_keys=True)
+    schema = schema.Schema({"architecture": str}, ignore_extra_keys=True)
+
+    def __init__(self, dependencies: List[str], architecture: str):
+        super().__init__(dependencies)
+        self.architecture = architecture

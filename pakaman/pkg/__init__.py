@@ -21,11 +21,11 @@ class TargetMeta(ABCMeta):
 class TargetBuilder(metaclass=TargetMeta):
     name = "unknown"
 
-    def __init__(self, package: Package, target: Target, output_dir: Path):
+    def __init__(self, package: Package, target: Target, output_dir: Path, clean_up: bool):
         self.package = package
         self.target = target
         self.output_dir = output_dir
-        self.remove_build_files = True
+        self.clean_up = clean_up
         self.loader = AssetLoader(self.name)
 
     @abstractmethod

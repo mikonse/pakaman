@@ -4,24 +4,18 @@ language: python
 maintainer:
   name: Michael Loipführer
   email: ml@stusta.de
-url: https://github.com/mikonse/pakaman # optional
-description: some package
 distributions:
   - name: debian
+    dependencies:
+      - python3-yaml
+      - python3-schema
+      - python3-jinja2
   - name: arch
     dependencies:
       - python-yaml
       - python-schema
+      - python-jinja2
 changelog:
-  - version: 0.1.1
-    urgency: medium
-    changes:
-      - minor bug fixes
-      - maybe some security issues
-    date: 2020-10-14T12:13:14+02:00
-    author:
-      name: Michael Loipführer
-      email: ml@stusta.de
   - version: 0.1.0
     urgency: medium
     changes:

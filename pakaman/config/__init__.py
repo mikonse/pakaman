@@ -105,6 +105,10 @@ class Package:
         self.license = license or "unknown"
         self.url = url
 
+    @property
+    def version(self):
+        return self.changelog.changes[0].version
+
     @classmethod
     def from_config_file(cls, file_path: Path) -> "Package":
         with open(file_path, "r") as f:

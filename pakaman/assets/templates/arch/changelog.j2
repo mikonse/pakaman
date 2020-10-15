@@ -1,0 +1,8 @@
+{% for change in package.changelog.changes -%}
+# Changelog
+## ({{ change.version }}) - {{ change.date.strftime('%a, %d %b %Y %H:%M:%S %z') }}
+{% for item in change.changes %}
+  * {{ item }}
+{%- endfor %}
+ -- {{ change.author_name }} <{{ change.author_email }}>
+{% endfor -%}

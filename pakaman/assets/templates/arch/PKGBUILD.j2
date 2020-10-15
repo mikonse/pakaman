@@ -1,41 +1,35 @@
-# Maintainer: {{ maintainer.name }} <{{ maintainer.email }}>
-pkgname={{ name }}
-pkgver={{ version }}
+# Maintainer: {{ package.maintainer_name }} <{{ package.maintainer_email }}>
+pkgname={{ package.name }}
+pkgver={{ package.version }}
 pkgrel=1
-pkgdesc="{{ description }}"
-arch=()
-url={{ url }}
-license=("{{ license }}")
+pkgdesc="{{ package.description }}"
+arch=("{{ target.architecture }}")
+url="{{ package.url }}"
+license=("{{ package.license }}")
 groups=()
-depends=()
-makedepends=()
+depends=({% if target.dependencies %}"{{ '","'.join(target.dependencies) }}"{% endif %})
+makedepends=("python-setuptools")
 provides=()
 conflicts=()
 replaces=()
 backup=()
 options=()
 install=
-source=("$pkgname-$pkgver.tar.gz")
+source=()
+changelog="changelog"
 noextract=()
-md5sums=('SKIP')
-
-prepare() {
-    cd "$pkgname-$pkgver"
-    # patch -p1 -i "$srcdir/${pkgname%-VCS}.patch"
-}
+md5sums=()
 
 build() {
-    cd "$pkgname-$pkgver"
-    ./configure --prefix=/usr
-    make
-}
-
-check() {
-    cd "$pkgname-$pkgver"
-    make -k check
+    # for some reason this starts in the source directory
+    cd ..
+    echo $PWD
+    python setup.py build
 }
 
 package() {
-    cd "$pkgname-$pkgver"
-    make DESTDIR="$pkgdir/" install
+    # for some reason this starts in the source directory
+    cd ..
+    echo $PWD
+    python setup.py install --root="$pkgdir" --optimize=1 --skip-build
 }
