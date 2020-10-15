@@ -1,0 +1,17 @@
+Source: {{ package.name }}
+Section: python
+Priority: optional
+Maintainer: {{ package.maintainer_name }}, <{{ package.maintainer_email }}>
+Build-Depends: debhelper (>= 11),
+               python3 (>= 3.7.3)
+Standards-Version: 3.9.2
+X-Python-Version: >= 3.7
+
+
+Package: {{ package.name }}
+Architecture: {{ target.architecture }}
+Section: python
+Depends: ${misc:Depends}, ${python3:Depends}
+Description: {{ package.description }}
+{{ package.long_description | replace("\n\n", "\n.\n") |indent(1, True) }}
+

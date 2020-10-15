@@ -1,0 +1,41 @@
+# Maintainer: {{ maintainer.name }} <{{ maintainer.email }}>
+pkgname={{ name }}
+pkgver={{ version }}
+pkgrel=1
+pkgdesc="{{ description }}"
+arch=()
+url={{ url }}
+license=("{{ license }}")
+groups=()
+depends=()
+makedepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+source=("$pkgname-$pkgver.tar.gz")
+noextract=()
+md5sums=('SKIP')
+
+prepare() {
+    cd "$pkgname-$pkgver"
+    # patch -p1 -i "$srcdir/${pkgname%-VCS}.patch"
+}
+
+build() {
+    cd "$pkgname-$pkgver"
+    ./configure --prefix=/usr
+    make
+}
+
+check() {
+    cd "$pkgname-$pkgver"
+    make -k check
+}
+
+package() {
+    cd "$pkgname-$pkgver"
+    make DESTDIR="$pkgdir/" install
+}

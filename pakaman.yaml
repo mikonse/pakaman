@@ -1,0 +1,32 @@
+name: pakaman
+license: MIT # optional - assumed as 'unknown' if omitted
+language: python
+maintainer:
+  name: Michael Loipführer
+  email: ml@stusta.de
+url: https://github.com/mikonse/pakaman # optional
+description: some package
+distributions:
+  - name: debian
+  - name: arch
+    dependencies:
+      - python-yaml
+      - python-schema
+changelog:
+  - version: 0.1.1
+    urgency: medium
+    changes:
+      - minor bug fixes
+      - maybe some security issues
+    date: 2020-10-14T12:13:14+02:00
+    author:
+      name: Michael Loipführer
+      email: ml@stusta.de
+  - version: 0.1.0
+    urgency: medium
+    changes:
+      - initial release
+    date: 2020-10-14T12:00:14+02:00
+    author:
+      name: Michael Loipführer
+      email: ml@stusta.de

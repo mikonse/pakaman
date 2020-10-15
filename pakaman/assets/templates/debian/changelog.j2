@@ -1,0 +1,9 @@
+{% for change in package.changelog.changes -%}
+{{ package.name }} ({{ change.version }}) {{ target.dist_version }}; urgency={{ change.urgency }}
+{% for item in change.changes %}
+  * {{ item }}
+{%- endfor %}
+
+ -- {{ change.author_name }} <{{ change.author_email }}>  {{ change.date.strftime('%a, %d %b %Y %H:%M:%S %z') }}
+
+{% endfor -%}

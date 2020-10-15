@@ -1,0 +1,30 @@
+name: test-pkg
+license: MIT
+language: python
+maintainer:
+  name: Some Maintainer
+  email: email@email.com
+description: some package
+distributions:
+  - name: debian
+    dist_version: buster
+    architecture: all
+#  - name: arch
+changelog:
+  - version: 1.0.0
+    urgency: medium
+    changes:
+      - minor bug fixes
+      - maybe some security issues
+    date: 2020-10-14T12:13:14+02:00
+    author:
+      name: Some Author
+      email: mail@mail.de
+  - version: 0.1.0
+    urgency: medium
+    changes:
+      - initial release
+    date: 2020-10-14T12:00:14+02:00
+    author:
+      name: Some Author
+      email: mail@mail.de
