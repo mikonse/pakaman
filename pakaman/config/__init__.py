@@ -22,6 +22,13 @@ CONFIG_SCHEMA = schema.Schema(
             "name": str,
             "email": str
         },
+        schema.Optional("install"): {
+            schema.Optional("systemd"): [{
+                "file": str,
+                schema.Optional("enabled", default=False): bool,
+                schema.Optional("started", default=False): bool
+            }]
+        },
         "changelog":
             [
                 {
@@ -88,6 +95,7 @@ class Package:
             package_root: Path,
             maintainer_name: str,
             maintainer_email: str,
+            systemd: Optional[Dict] = None,
             description: Optional[str] = None,
             long_description: Optional[str] = None,
             license: Optional[str] = None,
@@ -100,6 +108,7 @@ class Package:
         self.maintainer_name = maintainer_name
         self.maintainer_email = maintainer_email
         self.package_root = package_root
+        self.systemd = systemd
         self.description = description
         self.long_description = long_description
         self.license = license or "unknown"
@@ -128,9 +137,10 @@ class Package:
         package = cls(
             name=data["name"],
             language=data["language"],
-            description=data["description"],
+            description=data.get("description"),
             url=data.get("url"),
             license=data.get("license"),
+            systemd=data.get("install", {}).get("systemd"),
             maintainer_name=data["maintainer"]["name"],
             maintainer_email=data["maintainer"]["email"],
             package_root=package_root,

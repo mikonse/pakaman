@@ -25,6 +25,7 @@ setup(name='test_pkg',
       install_requires=[],
       license='MIT',
       packages=['src'],
+      data_files=[("/etc/test-pkg/", ["config.ini"])],
       entry_points={'console_scripts': ['test_pkg=src.cli:cli']},
       include_package_data=True,
       zip_safe=False)

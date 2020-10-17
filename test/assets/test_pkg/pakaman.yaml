@@ -5,11 +5,16 @@ maintainer:
   name: Some Maintainer
   email: email@email.com
 distributions:
-  - name: debian
-    dist_version: buster
-    architecture: all
-#  - name: arch
-#    architecture: x86_64
+#  - name: debian
+#    dist_version: buster
+#    architecture: all
+  - name: arch
+    architecture: x86_64
+install:
+  systemd:
+    - file: test_pkg.service
+      enabled: false
+      started: false
 changelog:
   - version: 1.0.0
     urgency: medium

@@ -1,0 +1,8 @@
+[Unit]
+Description=test pkg
+
+[Service]
+ExecStart=/usr/bin/test_pkg
+
+[Install]
+WantedBy=multi-user.target
