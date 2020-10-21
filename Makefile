@@ -1,15 +1,22 @@
 .PHONY: format
 format:
-    yapf
+	yapf
+
+.PHONY: lint
+lint: pylint mypy
 
 .PHONY: pylint
 pylint:
-    pylint ./**/*.py
+	pylint ./**/*.py
 
 .PHONY: mypy
 mypy:
-    mypy --ignore-missing-imports .
+	mypy --ignore-missing-imports .
 
-.PHONY: build
-build:
-    pakaman
+.PHONY: package
+package:
+	pakaman
+
+.PHONY: test
+test:
+	tox
